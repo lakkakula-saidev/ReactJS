@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<!-- saved from url=(0436)https://s3.eu-west-1.amazonaws.com/eduflow-production/activity-resources/767821146477853.html?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA2TAWW44RCEE6YREN%2F20210429%2Feu-west-1%2Fs3%2Faws4_request&X-Amz-Date=20210429T221617Z&X-Amz-Expires=600&X-Amz-SignedHeaders=host&response-content-disposition=inline%3B%20filename%2A%3DUTF-8%27%27M4-D4.html&X-Amz-Signature=3cca2cf979bc18c9c70205d491bcb0931d7364dadc462c7f489e8a7b46878ac8 -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252"></head>
+
+  <body data-new-gr-c-s-check-loaded="14.1008.0" data-gr-ext-installed="">
+    <h2>Improve your Bookstore!</h2>
+
+    <h4>In this exercise you are gonna update your own book store!</h4>
+
+    <h4>
+      Start from your previous React book store. We want you to give the user
+      the ability to add comments to the books. All users can add comments like
+      a "real" review :)
+    </h4>
+
+    <pre>      <code>
+        API INFO:
+
+        You have a CRUD endpoint for comments on:
+
+        https://striveschool-api.herokuapp.com/api/comments/
+
+        This means you can GET, DELETE, POST, PUT data from there.
+
+        The Comment structure is this:
+
+        {
+          "comment": "A good book but definitely I don't like many parts of the plot",
+          "rate": 3,
+          "elementId": "0316438960"
+        }
+
+        Where:
+        - comment is the text of comment inserted by the user
+        - rate is a value between 1 and 5
+        - elementId is the ASIN of the book
+        - use usual Authentication (grab a new token on https://strive.school/studentlogin if you're previous one is expired)
+
+        !IMPORTANT!
+        You can't get ALL the comments. You have to specify the ElementID / ASIN in the query:
+
+        https://striveschool-api.herokuapp.com/api/comments/{ASIN}
+
+        Doing so, you'll get all the comments for that specific book.
+
+      </code>
+    </pre>
+
+    <ol>
+      <li>
+        Create a CommentArea component. When the user clicks on a book, this
+        component should be displayed.
+      </li>
+      <li>
+        CommentArea component contains the picture of the book, and two
+        subcomponents: CommentsList and AddComment.
+      </li>
+      <li>
+        CommentsList holds a list of comments about the selected book, the
+        comments array is passed as a prop. Each comment is made by the same
+        SingleComment component.
+      </li>
+      <li>
+        AddComment contains a form for adding a text comment and a rating (from
+        1 to 5). This component should allow the user to POST a new Comment on
+        the selected Book
+      </li>
+      <li>
+        Add, to each "Comment", a button for DELETING it. Create a request
+        towards https://striveschool-api.herokuapp.com/api/comments/{commentId}
+      </li>
+      <li>
+        Create a Loading component. This loading component should appear on the
+        page when an remote request is ongoing.
+      </li>
+      <li>
+        Create an error handler for the remote requests. If something goes
+        wrong, an error message should appear!
+      </li>
+      <li>Publish everything on GitHub</li>
+
+      <!-- EXTRA -->
+      <li>
+        Add to CommentList component the ability to filter comments using a text
+        box. The filter will display only the comments that contain the
+        specified string in the text or in the author properties.
+      </li>
+    </ol>
+  
+
+</body></html>

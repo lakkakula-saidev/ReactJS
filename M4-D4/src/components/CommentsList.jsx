@@ -6,9 +6,24 @@ class CommentsList extends Component {
     console.log(this.props.bookComments);
     return (
       <ListGroup>
+        <ListGroup.Item
+          className="list-group-item d-flex justify-content-between align-items-start"
+          key={"commentHeading"}
+        >
+          <div className="ms-2 me-auto">
+            <strong>Comment</strong>
+          </div>
+          <span>
+            <strong>Rating</strong>
+          </span>
+        </ListGroup.Item>
         {this.props.bookComments.map((item) => (
-          <ListGroup.Item className="justify-content-between" key={item.id}>
-            {item.comment} {item.rate}
+          <ListGroup.Item
+            className="list-group-item d-flex justify-content-between align-items-start"
+            key={item._id}
+          >
+            <div className="ms-2 me-auto">{item.comment}</div>
+            <span className="badge bg-primary rounded-pill">{item.rate}</span>
           </ListGroup.Item>
         ))}
       </ListGroup>
@@ -17,9 +32,3 @@ class CommentsList extends Component {
 }
 
 export default CommentsList;
-
-/* {
-  this.props.bookComments.map((currentBook) => (
-    <SingleBook book={currentBook} key={currentBook.title} />
-  ));
-} */

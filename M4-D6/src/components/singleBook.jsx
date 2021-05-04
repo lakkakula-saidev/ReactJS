@@ -1,36 +1,34 @@
-import { Card, Container } from "react-bootstrap";
+import { Card } from "react-bootstrap";
 import React from "react";
-import CommentForm from "./commentFrom.jsx";
 
 class SingleBook extends React.Component {
   state = {
-    selected: false,
     comments: [],
   };
 
-  comment = async (asin) => {
+  comment = async (asin, book) => {
     let endpoint =
       "https://striveschool-api.herokuapp.com/api/comments/" + `${asin}`;
+
     try {
       let bookComments = await fetch(endpoint, {
         headers: {
           Authorization:
-            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDgwMTk0N2IxZjBmYjAwMTVkOTE3ODYiLCJpYXQiOjE2MTk3MDQxNDYsImV4cCI6MTYyMDkxMzc0Nn0.kn5IJ6NrB0ParFoZTMbCv9U3bonQxfjR4MZZsjR9KzY",
+            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDgwMTk0N2IxZjBmYjAwMTVkOTE3ODYiLCJpYXQiOjE2MTk3ODk1ODEsImV4cCI6MTYyMDk5OTE4MX0.q68QrQnbnmVySS6sQu3apy-5aOC-iKTp6V2OqNb_eZQ",
         },
       });
       this.setState({ comments: await bookComments.json() });
     } catch (error) {
       alert(error);
     } finally {
-      console.log(this.state.comments);
-      this.setState({ selected: !this.state.selected });
+      this.props.onselectedBook(book, this.state.comments);
     }
   };
 
   render() {
     return (
       <>
-        {this.state.selected === true ? (
+        {/* {this.state.selected === true ? (
           <CommentForm
             setValue={this.state.selected}
             comments={this.state.comments}
@@ -38,13 +36,13 @@ class SingleBook extends React.Component {
           />
         ) : (
           <></>
-        )}
+        )} */}
         <Card
-          className="h-100 my-4 "
-          style={{ width: "18rem" }}
+          className="h-100 mb-4 mx-2 "
+          style={{ width: "15rem" }}
           key={this.props.book}
           id={this.props.book}
-          onClick={() => this.comment(this.props.book.asin)}
+          onClick={() => this.props.onselectedBook(this.props.book)}
         >
           <Card.Img
             className="cardImages"
